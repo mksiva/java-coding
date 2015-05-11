@@ -7,6 +7,7 @@ package com.siva.javamultithreading;
 
 import java.util.Date;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 import java.util.Set;
 import java.util.concurrent.Callable;
@@ -23,12 +24,17 @@ public class ExcelChunkSheetWriter implements Callable<HSSFWorkbook>{
 
     private int start;
     private int end;
+    private List<DomainObject> list;
     
     public ExcelChunkSheetWriter(int start, int end) {
         this.start = start;
         this.end = end;
     }
 
+    public ExcelChunkSheetWriter(List<DomainObject> list) {
+        this.list = list;
+    }
+    
     public ExcelChunkSheetWriter() {
         
     }
@@ -44,11 +50,16 @@ public class ExcelChunkSheetWriter implements Callable<HSSFWorkbook>{
         HSSFSheet sheet = workbook.createSheet("Sample sheet");
         
         Map<String,Object[]> data =  new HashMap<String,Object[]>();        
-        data.put(this.start+"1-"+this.end, new Object[] {"Emp No.", "Name", "Salary"});
-        for (int i = this.start; i < this.end; i++) {          
-           data.put(i+"2-"+this.end, new Object[] {this.start+1d+this.end, "Siva"+i, 1500000d});
+//        data.put(this.start+"1-"+this.end, new Object[] {"Emp No.", "Name", "Salary"});
+//        for (int i = this.start; i < this.end; i++) {          
+//           data.put(i+"2-"+this.end, new Object[] {this.start+1d+this.end, "Siva"+i, 1500000d});
+//        }
+        
+        data.put(this.start+"1-"+this.end, new Object[] {"Id", "Name", "Comment"});
+        for (DomainObject obj : list) {
+            data.put(obj.getId(), new Object[] {obj.getId(), obj.getName(), obj.getComment()});
         }
-         
+        
         Set<String> keyset = data.keySet();
         int rownum = 0;
         for (String key : keyset) {
@@ -69,6 +80,14 @@ public class ExcelChunkSheetWriter implements Callable<HSSFWorkbook>{
         }         
         
         return workbook;
+    }
+
+    public void setList(List<DomainObject> list) {
+        this.list = list;
+    }
+
+    public List<DomainObject> getList() {
+        return list;
     }
     
 }
