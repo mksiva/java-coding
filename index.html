@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <title>Where Am I</title>    
+        <link rel="stylesheet" href="css/app.css"/>         
+        <link rel="stylesheet" href="css/material-icons.css"/>
+        <link rel="stylesheet" href="bower_components/angular-material/angular-material.css"/>
+        
+        <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+        <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+        <!--[if lt IE 9]>
+          <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+          <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+        <![endif]-->
+
+        <style>
+            .header md-toolbar md-icon.md-default-theme {
+                color: white; }
+            </style>
+
+            <style type="text/css">
+            /**
+             * Hide when Angular is not yet loaded and initialized
+             */
+            [ng\:cloak], [ng-cloak], [data-ng-cloak], [x-ng-cloak], .ng-cloak, .x-ng-cloak {
+                display: none !important;
+            }
+        </style>
+    </head>
+    <body ng-controller="EntryController" ng-cloak>
+    <md-toolbar md-scroll-shrink style="position: fixed;">
+        <div class="md-toolbar-tools">           
+            <h3>
+                <span>{{apptitle}} </span><br/>
+                <span class="md-caption">{{address}}</span>                
+            </h3>
+            <span flex></span>           
+            <span class="md-subhead" hide-sm></span>      
+            <span flex></span>
+        </div>
+    </md-toolbar>
+    <br/><br/><br/>
+    <md-content ui-view md-scroll-y flex layout-padding>
+
+    </md-content>      
+
+    <script src="bower_components/angular/angular.js"></script>
+    <script src="bower_components/angular-animate/angular-animate.js"></script>
+    <script src="bower_components/angular-aria/angular-aria.js"></script>
+    <script src="bower_components/angular-material/angular-material.js"></script>
+    <script src="bower_components/angular-material-icons/angular-material-icons.js"></script>    
+    <script src="bower_components/angular-resource/angular-resource.js"></script>
+    <script src="bower_components/angular-ui-router/release/angular-ui-router.js"></script>
+    <script src="bower_components/ngCordova/dist/ng-cordova.js"></script>    	
+	<script type="text/javascript" src="cordova.js"></script>
+	
+    <script src="app/app.js"></script>   
+    <script src="app/shared/lb-services.js"></script>
+    <script src="app/main/home-control.js"></script>
+    <script src="app/whereami/whereami-control.js"></script>
+    <script src="app/profile/profile-control.js"></script>
+    <script>
+    angular.element(document).ready(function () {
+        if (window.cordova) {
+          console.log("Running in Cordova, will bootstrap AngularJS once 'deviceready' event fires.");
+          document.addEventListener('deviceready', function () {
+            console.log("Deviceready event has fired, bootstrapping AngularJS.");
+            angular.bootstrap(document.body, ['app']);
+          }, false);
+        } else {
+          console.log("Running in browser, bootstrapping AngularJS now.");
+          angular.bootstrap(document.body, ['app']);
+        }
+      });
+    </script>
+</body>
+</html>

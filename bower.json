@@ -1,0 +1,26 @@
+{
+  "name": "www",
+  "authors": [
+    "Siva Kalidasan <pkt.siva@gmail.com>"
+  ],
+  "description": "",
+  "main": "",
+  "license": "MIT",
+  "homepage": "",
+  "private": true,
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "angular": "^1.6.4",
+    "angular-material": "^1.1.4",
+    "angular-material-icons": "^0.7.1",
+    "angular-resource": "^1.6.4",
+    "angular-ui-router": "^1.0.1",
+    "ngCordova": "^0.1.27-alpha"
+  }
+}
